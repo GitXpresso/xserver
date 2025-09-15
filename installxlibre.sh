@@ -1,11 +1,7 @@
 #!/bin/bash
 sudo apt install x11proto-present-dev
 #sudo dnf install xorg-x11-proto-devel
-On Arch Linux:
-
-bash
-Copy code
-sudo pacman -S xorg-presentproto
+#sudo pacman -S xorg-presentproto
 if [ -d /etc/apt ]; then
 packages=("git" "meson" "x11proto-dev" "xtrans-dev" "libpixman-1-dev" "libxkbcommon-x11-dev" "libxfont-dev" "libxcvt-dev" "libdrm-dev" "libepoxy-dev" "x11proto-present-dev" "x11proto-dev" "libxkbfile-dev" "libudev-dev" "libxshmfence-dev" "libbsd-dev" "x11proto-xf86dri-dev" "libgl1-mesa-dev" "libglu1-mesa-dev" "libglu1-mesa-dev" "libgl-dev" "libdrm-dev" "xutils-dev" "mesa-common-dev" "libxcb-shape0-dev" "libxcb-util-dev" "libxcb-icccm4-dev")
  for package in "${packages[@]}"; do
