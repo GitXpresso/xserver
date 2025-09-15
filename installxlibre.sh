@@ -36,7 +36,7 @@ else
   sleep 0.2 && clear
   echo "outputing meson options..."
   #curl -fsSL https://github.com/X11Libre/xserver/blob/master/meson_options.txt # I do not fully understand this yet :/
-  meson setup --prefix="$(pwd)/test build --buildtype debugoptimized xorg # I do not fully understand enough to make this an automatic script only.
+  meson setup --prefix="$(pwd)/test" build --buildtype debugoptimized xorg # I do not fully understand enough to make this an automatic script only.
   sudo ninja -C build install
 fi
   
