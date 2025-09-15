@@ -1,5 +1,4 @@
 #!/bin/bash
-sudo apt install x11proto-present-dev
 #sudo dnf install xorg-x11-proto-devel
 #sudo pacman -S xorg-presentproto
 if [ -d /etc/apt ]; then
@@ -41,7 +40,7 @@ else
   #curl -fsSL https://github.com/X11Libre/xserver/blob/master/meson_options.txt # I do not fully understand this yet :/
   presetproto_ver=$(pkg-config --modversion presentproto)
   if [ ${presentproto_ver} | grep '>1.3' ]; then
-    sudo apt upgrade x11proto-dev
+    sudo apt upgrade -y x11proto-dev && sudo apt upgrade -y x11proto-present-dev
   fi
   meson setup --prefix="$(pwd)/image" build 
   sudo ninja -C build install
