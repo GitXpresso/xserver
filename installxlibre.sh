@@ -1,4 +1,11 @@
 #!/bin/bash
+sudo apt install x11proto-present-dev
+#sudo dnf install xorg-x11-proto-devel
+On Arch Linux:
+
+bash
+Copy code
+sudo pacman -S xorg-presentproto
 if [ -d /etc/apt ]; then
 packages=("git" "meson" "x11proto-dev" "xtrans-dev" "libpixman-1-dev" "libxkbcommon-x11-dev" "libxfont-dev" "libxcvt-dev" "libdrm-dev" "libepoxy-dev" "x11proto-present-dev" "x11proto-dev" "libxkbfile-dev" "libudev-dev" "libxshmfence-dev" "libbsd-dev" "x11proto-xf86dri-dev" "libgl1-mesa-dev" "libglu1-mesa-dev" "libglu1-mesa-dev" "libgl-dev" "libdrm-dev" "xutils-dev" "mesa-common-dev" "libxcb-shape0-dev" "libxcb-util-dev" "libxcb-icccm4-dev")
  for package in "${packages[@]}"; do
@@ -25,7 +32,7 @@ if [ -f $(pwd)/xserver ]; then
   sleep 0.2 && clear
   echo "outputing meson options..."
   #curl -fsSL https://github.com/X11Libre/xserver/blob/master/meson_options.txt # I do not fully understand this yet :/
-  #meson setup <prefix> build --buildtype debugoptimized <meson_options> # I do not fully understand enough to make this an automatic script only.
+  meson setup --prefix="$(pwd)/image" build 
   sudo ninja -C build install
 else
   echo "Repository not found, cloning repository..."
@@ -36,7 +43,11 @@ else
   sleep 0.2 && clear
   echo "outputing meson options..."
   #curl -fsSL https://github.com/X11Libre/xserver/blob/master/meson_options.txt # I do not fully understand this yet :/
-  meson setup --prefix="$(pwd)/test" build --buildtype debugoptimized xorg # I do not fully understand enough to make this an automatic script only.
+  presetproto_ver=$(pkg-config --modversion presentproto)
+  if [ ${presentproto_ver} | grep '>1.3' ]; then
+    sudo apt upgrade x11proto-dev
+  fi
+  meson setup --prefix="$(pwd)/image" build 
   sudo ninja -C build install
 fi
   
