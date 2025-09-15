@@ -40,7 +40,10 @@ else
   #curl -fsSL https://github.com/X11Libre/xserver/blob/master/meson_options.txt # I do not fully understand this yet :/
   presetproto_ver=$(pkg-config --modversion presentproto)
   if [ ${presentproto_ver} | grep '>1.3' ]; then
-    sudo apt upgrade -y x11proto-dev && sudo apt upgrade -y x11proto-present-dev
+     wget https://xorg.freedesktop.org/archive/individual/proto/xproto-7.0.31.tar.gz
+     tar -xvf xproto-*.tar.gz
+     cd $(pwd)/xproto-7.0.31
+     ./configure && make && sudo make install
   fi
   meson setup --prefix="$(pwd)/image" build 
   sudo ninja -C build install
